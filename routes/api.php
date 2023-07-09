@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CourseController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,10 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+
+// User
 Route::post('/login', [AuthController::class, 'login']);
+
+
+// Course
+Route::get('/courses', [CourseController::class, 'courses'])->middleware('auth:sanctum');
