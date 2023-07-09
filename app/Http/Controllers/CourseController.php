@@ -41,4 +41,25 @@ class CourseController extends Controller
             return response()->json(['message'=>'course not found'], 404);  
         }
     }
+
+    public function update($id){
+        $course = Course::find($id);
+
+        if($course){
+
+            $updated_course_name = request('course_name')? request('course_name') : $course->course_name;
+            $updated_teacher_name = request('course_teacher_name')? request('course_teacher_name') : $course->course_teacher_name;
+            $updated_hours = intval(request('course_total_hours')? request('course_total_hours') : $course->course_total_hours);
+
+            $course->course_name = $updated_course_name;
+            $course->course_teacher_name = $updated_teacher_name;
+            $course->course_total_hours = $updated_hours;
+
+            $course->save();
+
+            return response()->json($course, 202);
+        }else {
+            return response()->json(['message'=>'course not found'], 404);  
+        }        
+    }
 }
