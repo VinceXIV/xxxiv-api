@@ -15,4 +15,12 @@ class CourseController extends Controller
     public function show($id){
         return Course::find($id);
     }
+
+    public function create(){
+        return Course::factory()->create([
+            'course_name' => request('course_name'),
+            'course_teacher_name' => request('course_teacher_name'),
+            'course_total_hours' => request('course_total_hours')
+        ]);
+    }
 }
