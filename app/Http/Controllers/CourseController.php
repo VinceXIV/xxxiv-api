@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Course;
 
 class CourseController extends Controller
 {
     public function index(){
-        return [
-            "wow!" => "I can't believe they found me!"
-        ];
+        return Course::all();
     }
 }
