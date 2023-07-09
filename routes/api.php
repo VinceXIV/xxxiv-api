@@ -23,4 +23,4 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 // Course
-Route::get('/courses', [CourseController::class, 'courses'])->middleware('auth:sanctum');
+Route::get('/courses', [CourseController::class, 'index'])->middleware('auth:sanctum');
