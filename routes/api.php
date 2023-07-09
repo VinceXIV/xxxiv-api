@@ -26,4 +26,5 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/courses', [CourseController::class, 'index'])->middleware('auth:sanctum');
 Route::get('/courses/{id}', [CourseController::class, 'show'])->middleware('auth:sanctum');
 Route::post('/courses', [CourseController::class, 'create'])->middleware('auth:sanctum');
+Route::delete('/courses/{id}', [CourseController::class, 'destroy'])->middleware('auth:sanctum');
 
