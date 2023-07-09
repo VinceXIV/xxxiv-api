@@ -14,7 +14,13 @@ class CourseController extends Controller
     }
 
     public function show($id){
-        return Course::find($id);
+        $course = Course::find($id);
+
+        if($course){
+            return $course;
+        }else {
+            return response()->json(['message'=>'course not found'], 404);
+        }
     }
 
     public function create(){
