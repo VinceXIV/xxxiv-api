@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'first_name' => 'Vincent',
             'last_name' => 'Makokha',
             'email' => 'vincent@vincent.com',
-            'password' => Hash::make('vincent')
+            'password' => Hash::make('password')
         ]);
 
         \App\Models\Course::factory()

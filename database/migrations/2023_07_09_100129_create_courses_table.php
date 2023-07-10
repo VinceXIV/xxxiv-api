@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('course_name');
             $table->string('course_teacher_name');
             $table->string('course_total_hours');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
