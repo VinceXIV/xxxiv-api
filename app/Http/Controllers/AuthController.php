@@ -19,6 +19,7 @@ class AuthController extends Controller
 
         if(Hash::check(request('password'), $user->password)){
             return [
+                'user' => $user,
                 'token' => $user->createToken(time())->plainTextToken
             ];
         }
@@ -42,6 +43,7 @@ class AuthController extends Controller
 
         if($user){
             return [
+                'user' => $user,
                 'token' => $user->createToken(time())->plainTextToken
             ];
         }
