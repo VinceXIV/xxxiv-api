@@ -20,6 +20,7 @@ use App\Http\Controllers\CourseController;
 
 // User
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/signup', [AuthController::class, 'signup']);
 
 
 // Course
