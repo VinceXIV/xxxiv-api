@@ -6,15 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Response;
+use Laravel\Sanctum\PersonalAccessToken;
+
 
 class CourseController extends Controller
 {
     public function index(){
-        return Course::all();
+        // auth('sanctum')->user() returns the user who is currently authorized
+        // Find more info here; https://laracasts.com/discuss/channels/laravel/get-user-by-token
+        return auth('sanctum')->user()->courses;
     }
 
     public function show($id){
-        $course = Course::find($id);
+        $course = auth('sanctum')->user()->courses->find($id);
 
         if($course){
             return $course;
@@ -24,15 +28,20 @@ class CourseController extends Controller
     }
 
     public function create(){
+        // Get the currently authorized user
+        // Again, see https://laracasts.com/discuss/channels/laravel/get-user-by-token
+        $user = auth('sanctum')->user();
+
         return Course::factory()->create([
             'course_name' => request('course_name'),
             'course_teacher_name' => request('course_teacher_name'),
-            'course_total_hours' => request('course_total_hours')
+            'course_total_hours' => request('course_total_hours'),
+            'user_id' => $user->id
         ]);
     }
 
     public function destroy($id){
-        $course = Course::find($id);
+        $course = auth('sanctum')->user()->courses->find($id);
 
         if($course){
             $course->delete();
@@ -43,7 +52,7 @@ class CourseController extends Controller
     }
 
     public function update($id){
-        $course = Course::find($id);
+        $course = auth('sanctum')->user()->courses->find($id);
 
         if($course){
 
